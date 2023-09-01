@@ -1,0 +1,107 @@
+        {%  extends 'appname/layout.html' %}
+        {% load static %}
+        {% block content-1 %}
+            <style>
+    @media only screen and (max-width:500px)
+    {
+    body{width:100%}
+    }
+        .ratingcontainer{
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        }
+        .iconcotainer{
+        display: flex;
+        align-items: center;
+         flex-direction: column;
+        justify-content: space-evenly;
+        }
+        .class{
+        padding:25px;
+        font-size:20px;
+        }
+    </style>
+<!--Background #1-->
+<div style="background-image: url('/static/images/galaxyy.jpg');background-repeat:no-repeat;
+background-position:center top;background-attachment:fixed;
+background-size:cover">
+<!--    navigation bar-->
+
+<!--    search bar-->
+    <div class="row w-100" style="padding-top:150px">
+        <div class="d-flex justify-content-center align-items-center">
+        <div class="col-5">
+    <div class="input-group">
+<!--     <div class="form-outline">-->
+        <input type="search" id="form1" class="form-control" />
+<!--         <label class="form-label" for="form1"></label>-->
+<button id="search-button" type="button" class="btn btn-primary"
+          style="border:2px solid white;">
+          <i class="fas fa-search">SEARCH</i>
+        </button>
+     </div>
+<!--    </div>-->
+        </div>
+<!--        <div class="col">-->
+
+<!--            </div>-->
+            </div>
+        </div>
+    <script>
+        const searchButton = document.getElementById('search-button');
+        const searchInput = document.getElementById('form1');
+        searchButton.addEventListener('click', () => {
+            const inputValue = searchInput.value;
+            alert(inputValue);
+        });
+    </script>
+<!--Heading-->
+        <span style="color:#ffec17;font:calibri;font-weight:900;font-size:60px;
+            display:flex;align-items:center;justify-content:center;-webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: black">Our Training Programs</span><br>
+        <span style="color:#000000;font:calibri;font-weight:600;font-size:25px;margin-left:40px;margin-right:40px;
+            display:flex;align-items:center;justify-content:center">All Trainers Are Working Professionals,
+            Software Engineers,Networking</span>
+        <span style="color:#000000;font:calibri;font-weight:600;font-size:25px;margin-left:40px;margin-right:40px;
+            display:flex;align-items:center;justify-content:center">Engineers And Software Test Engineers Of Suffix E Solutions</span><br>
+<!--course ad    -->
+        <div class="navbar-nav mb-lg-0 d-md-block d-none">
+            <img class="rounded mx-auto d-block" src="{% static 'images\full stack poster.jpg' %}" style="width:500;
+                align:center;display: block;margin-left:auto;margin-right:auto;" alt="scope"/>
+        </div>
+        <br><br>
+<!--rating -->
+        <div class="ratingcontainer">
+            <img   src="{% static 'images\rating.png' %}"
+              style="display: block;margin-left:auto;margin-right:auto;width:230px;
+              height:170px;align:center;" alt="scope"/><br>
+        <div style="color:black;font:calibri;font-weight:450;margin-left:auto;margin-right:auto;
+             align:center;font-size:24px; ">GOOGLE 4.9 * RATED INSTITUTE</div><br><br><br><br>
+</div>
+<!--heading 1-->
+
+
+
+
+<!--            courses names(table)-->
+
+            <div class="container" >
+                  {% for course in courses %}
+                <div class="row">
+                    <span style="color:#FFFFFF;font:calibri;font-weight:600;font-size:40px;margin-left:10px;">
+                        {{course.name}}</span>
+                    <div class="row d-flex justify-content-center">
+                    {% for crs in course.items %}
+
+                        <div class="col-3 bg-light m-1 class"><a href="{% url 'course_detail' name=crs.name %}">{{crs.name}}</a></div>
+
+                    {% endfor %}
+                        </div>
+                </div>
+                {% endfor %}
+
+</div>
+
+    {% endblock %}
