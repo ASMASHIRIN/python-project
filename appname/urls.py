@@ -14,5 +14,8 @@ urlpatterns = [
     path('login/', views.login, name='login'),
     path('forgot_password/', views.forgot_password, name='forgot_password'),
     path('otp/', views.code, name='otp'),
-    path('new_password/', views.new_password, name='new_password')
+    path('new_password/', views.new_password, name='new_password'),
+    path('enroll/', views.enroll, name='enroll'),
+    path('search/', views.Search.as_view(), name='Search')
+
 ]

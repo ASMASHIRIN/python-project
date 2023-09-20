@@ -1,0 +1,121 @@
+        {%  extends 'appname/layout.html' %}
+        {% load static %}
+        {% block content-1 %}
+        <style>
+            h2{
+            align-items:center;
+            justify-content:center;
+            display:flex;
+            }
+            hr{
+            color:white;
+            }
+        </style>
+
+<!--Background #1-->
+<div style="background-image: url('/static/images/galaxyy.jpg');background-repeat:no-repeat;
+background-position:center top;background-attachment:fixed;
+background-size:cover"><br><br>
+
+<!--    heading-->
+    <h2><u>Opted Courses</u></h2><br>
+
+<!--opted course table-->
+<div class="d-flex justify-content-center">
+<table class="table table-light table-center table-striped w-75">
+  <thead>
+    <tr>
+      <th scope="col">Course Name</th>
+      <th scope="col">Date</th>
+      <th scope="col">Change</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td scope="row">Data Science</td>
+      <td>Aug 11,2022</td>
+      <td><input type="checkbox"></td>
+    </tr>
+  </tbody>
+  </table>
+</div><hr>
+
+    <h2><u>Search For New Courses</u></h2><br>
+
+    <!--    search bar-->
+    <div class="row w-100" >
+        <div class="d-flex justify-content-center align-items-center">
+        <div class="col-5">
+    <div class="input-group">
+<!--     <div class="form-outline">-->
+        <input type="search" id="form1" class="form-control" name="search" />
+<!--         <label class="form-label" for="form1"></label>-->
+<button id="course-search-input" type="button" class="btn btn-primary"
+          style="border:2px solid white;">
+          <i class="fas fa-search">SEARCH</i>
+        </button>
+
+     </div>
+
+
+            <div id="course-search-results" class="row row-cols-1 row-cols-md-1 ">
+                <div class="col">
+    <!-- Search results will be displayed here -->
+                </div>
+        </div>
+
+
+<!--    </div>-->
+        </div>
+<!--        <div class="col">-->
+
+<!--            </div>-->
+        </div>
+     </div>
+    <script>
+        $(document).ready(function () {
+            // Select elements
+             $('#form1').on('change',function() {
+             var query = $('#form1').val()
+            // Send an AJAX GET request to the Django view
+                $.ajax({
+                    url: "{% url 'Search' %}?search="+query,
+                    type: 'GET',
+                    success: function (data) {
+                        // Replace the content of the search results container with the response data
+                        var content="";
+                        for(i of data){
+                            var url = "{% url 'course_detail' name=1234 %}".replace(/1234/,i.course_name)
+                            content += '<div class="card" style="width: 18rem;"><div class="card-body">'
+                            content += `<h5 class="card-title">${i.course_name}</h5>`
+                            content += `<h6 class="card-subtitle mb-2 text-muted">${i.duration}</h6>`
+                            content += `<p class="card-text">₹${i.fee}/-</p>`
+                            content += `<a href="${url}" class="card-link">More Details...</a></div></div>`
+                        }
+                        console.log(data)
+                        $('#course-search-results').html(content);
+                        content="";
+                    },
+                    error: function () {
+                        $('#course-search-results').html('<p>An error occurred while searching for courses.</p>');
+                    }
+                })
+             })
+        })
+    </script>
+<br><br><br>
+
+<!--<a tabindex="0" class="btn btn-lg btn-danger" role="button" data-bs-toggle="popover" data-bs-trigger="hover focus"-->
+<!--   data-bs-title="Dismissible popover" data-bs-content="And here's some amazing content. It's very engaging. Right?-->
+<!--   And here's some amazing content. It's very engaging. Right?And here's some amazing content. It's very engaging. Right?-->
+<!--And here's some amazing content. It's very engaging. Right?And here's some amazing content. It's very engaging. Right?">Dismissible popover</a>-->
+
+<!--    <br><br>-->
+<!--</div>-->
+<!--<script>-->
+<!--  var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))-->
+<!--var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {-->
+<!--  return new bootstrap.Popover(popoverTriggerEl)-->
+<!--})-->
+<!--</script>-->
+        {% endblock %}

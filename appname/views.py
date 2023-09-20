@@ -6,6 +6,9 @@ from django.contrib import auth
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from .models import Courses, Registration, Opted_course, Temp_otp
+from rest_framework import generics, viewsets, filters
+from . import serializers
+from .serializers import CourseSerializer
 
 
 # Create your views here.
@@ -167,14 +170,15 @@ def course_detail(request, name):
 
 def edit(request):
     if request.method == "POST":
-        user_data = get_object_or_404(Registration,pk=request.session["user"][0]['userId'])
-        user = Registration(instance=user_data)
+        user_data = get_object_or_404(Registration, pk=request.session["user"][0]['userId'])
+        user = Registration()
         user.firstname = request.POST["firstname"]
         user.lastname = request.POST["lastname"]
         user.email = request.POST["email"]
         user.phonenumber = request.POST["phonenumber"]
         user.address = request.POST["address"]
         user.proflepicture = request.FILES["proflepicture"]
+        print(user.proflepicture)
         if Registration.objects.filter(email=user.email).exists():
             # User = Registration.objects.get(email=request.POST['email'])
 
@@ -184,8 +188,8 @@ def edit(request):
                                                                                         phonenumber=user.phonenumber,
                                                                                         address=user.address,
                                                                                         proflepicture=user.proflepicture,
-                                                                                       is_verified=True)
-            user.save()
+                                                                                        is_verified=True)
+            # user.save()
             return redirect("dashboard")
         else:
             print("user doesn't exists")
@@ -193,6 +197,7 @@ def edit(request):
     else:
         User = Registration.objects.get(pk=request.session["user"][0]['userId'])
         return render(request, 'appname/edit.html', {"users": User})
+
 
 def dashboard(request):
     user_details = Registration.objects.filter(pk=request.session["user"][0]['userId'])
@@ -292,3 +297,21 @@ def new_password(request):
     else:
         return render(request, 'appname/new_password.html')
 
+
+def enroll(request):
+    return render(request, 'appname/enroll.html')
+
+
+class Search(generics.ListCreateAPIView):
+    # lookup_field = 'course_name'
+    queryset = Courses.objects.all()
+    serializer_class = CourseSerializer
+    filter_backends = (filters.SearchFilter,)
+    search_fields = ['course_name']
+
+
+    # def get_queryset(self):
+    #     course_name = self.kwargs['course_name']
+    #     return Courses.objects.filter(course_name=course_name)
+    # # user = Courses()
+    # # course = Courses.objects.filter(pk=user[0].userid.id)(search=user.course_name)

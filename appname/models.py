@@ -31,7 +31,7 @@ class Registration(models.Model):
     state = models.CharField(max_length=200)
     city = models.CharField(max_length=200)
     hobbies = models.CharField(max_length=300)
-    proflepicture = models.FileField(upload_to='documents')
+    proflepicture = models.FileField()
     password = models.CharField(max_length=300, default='0000')
     is_verified = models.BooleanField(default=False)
     address = models.TextField(default="")
