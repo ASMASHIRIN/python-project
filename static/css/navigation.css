@@ -25,12 +25,12 @@ float: left
 
 li a     {
 display: block;
-color: white;
+color: black;
 text-align: center;
-padding:60px;
+padding:80px;
 text-decoration: none;
 }
 
 li a:hover{
-background-color: #99ccff;
+background-color: #f9a602;
 }

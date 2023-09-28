@@ -26,6 +26,7 @@
         padding:30px;
         font-size:25px;
         }
+
     </style>
     <meta charset="UTF-8">
     <title>Title</title>
@@ -78,34 +79,7 @@ background-size:cover">
     </div>
  </nav>
    <br><br><br><br><br><br>
-<!--    search bar-->
-    <div class="row w-100">
-        <div class="d-flex justify-content-center align-items-center">
-        <div class="col-5">
-    <div class="input-group">
-<!--     <div class="form-outline">-->
-        <input type="search" id="form1" class="form-control" />
-<!--         <label class="form-label" for="form1"></label>-->
-<button id="search-button" type="button" class="btn btn-primary"
-          style="border:2px solid white;">
-          <i class="fas fa-search">SEARCH</i>
-        </button>
-     </div>
-<!--    </div>-->
-        </div>
-<!--        <div class="col">-->
 
-<!--            </div>-->
-            </div>
-        </div>
-    <script>
-        const searchButton = document.getElementById('search-button');
-        const searchInput = document.getElementById('form1');
-        searchButton.addEventListener('click', () => {
-            const inputValue = searchInput.value;
-            alert(inputValue);
-        });
-    </script>
 <!--Heading-->
         <span style="color:#ffec17;font:calibri;font-weight:900;font-size:60px;
             display:flex;align-items:center;justify-content:center;-webkit-text-stroke-width: 1px;
@@ -133,7 +107,7 @@ background-size:cover">
     <div class="container">
         <div class="row">
     <span style="color:#FFFFFF;font:calibri;font-weight:600;font-size:40px;margin-left:10px;">
-       {{field}}</span>
+       {{field}}<a href="{% url 'enroll' %}" style="color:white;">( Enroll )</a></span>
 <!--            courses names(table)-->
             <div class="row d-flex justify-content-center">
                 {% for cs in cors %}
@@ -145,7 +119,7 @@ background-size:cover">
     <!--background #2-->
 <div style="background-image: url('/static/images/blue-white.png');margin:auto;
 background-repeat:no-repeat;background-position:center top; background-attachment:fixed;
-background-size:cover;rotate:180deg; height:1500px;">
+background-size:cover;rotate:180deg; height:900px;">
     <br> <br> <br>
 <!--    To rotate rest of the content-->
     <div style="rotate:180deg;align:center">
@@ -165,13 +139,8 @@ border:2px solid grey;margin-left:auto;margin-right:auto;display:flex;">
                 We are open 7 days 24 hrs to talk to you and listen to your queries.</span><br><br>
                 <span style="color:#009999;font:calibri;font-weight:700;margin-top:5px;
              text-align:center;font-size:24px; ">
-                GET A FREE CALL BACK</span><br>
-                <form  action="">
-                    <input type="text" value="enter your name"><br><br>
-                    <input type="text" value="enter your mobile number"><br><br>
-                    <input type="submit" value="CALL ME !" style=" background-color:darkblue;
-                color:white;font:calibri;font-weight:700;">
-                </form>
+                GET A FREE CALL BACK</span><br><br><br>
+                <a class="btn btn-warning nav-link white-text" href="{% url 'contact_us' %}">CONTACT US </a>
             </div>
 
         </div>
@@ -179,7 +148,7 @@ border:2px solid grey;margin-left:auto;margin-right:auto;display:flex;">
     <div class="col text-center">
         <span style="color:#009999;font:calibri;font-weight:700;
              align:center;font-size:43px; ">30+</span><br>
-    <span style="color:#FFFFFF;font:calibri;font-weight:700;
+    <span style="color:#000000;font:calibri;font-weight:700;
              align:center;font-size:20px; ">COMPUTER<br/> COURSES</span>
     </div>
 <!--    #2-->
@@ -187,17 +156,19 @@ border:2px solid grey;margin-left:auto;margin-right:auto;display:flex;">
     <div class="col text-center">
         <span style="color:#009999;font:calibri;font-weight:700;
              align:center;font-size:43px; ">1000+</span><br>
-    <span style="color:#FFFFFF;font:calibri;font-weight:700;
+    <span style="color:#000000;font:calibri;font-weight:700;
              align:center;font-size:20px;width:50px; ">STUDENTS ARE TRAINED EVERY YEAR</span>
     </div>
 <!--        #3-->
     <div class="col text-center">
         <span style="color:#009999;font:calibri;font-weight:700;
              align:center;font-size:43px; ">95%</span><br>
-    <span style="color:#FFFFFF;font:calibri;font-weight:700;
+    <span style="color:#000000;font:calibri;font-weight:700;
              align:center;font-size:20px;width:50px; ">STUDENTS ARE GETTING PLACED EVERY YEAR</span>
     </div>
         </div><br><br><br><br>
+</div>
+</div>
         <!--background #3-->
 <div style="background-image: url('/static/images/plain blue.png');
 background-repeat:no-repeat;background-position:center top; background-attachment:fixed;
@@ -224,5 +195,6 @@ background-size:cover;height:600px;">
              align:center;font-size:20px; "><u>info@scopeindia.org</u></span>
     </div>
   </div>
- </body>
+
+</body>
 </html>

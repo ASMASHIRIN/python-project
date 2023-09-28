@@ -16,6 +16,7 @@ urlpatterns = [
     path('otp/', views.code, name='otp'),
     path('new_password/', views.new_password, name='new_password'),
     path('enroll/', views.enroll, name='enroll'),
-    path('search/', views.Search.as_view(), name='Search')
-
+    path('search/', views.Search.as_view(), name='Search'),
+    path('delete', views.delete, name='delete'),
+    path("logout",views.logout,name="logout")
 ]

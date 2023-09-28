@@ -4,6 +4,6 @@ from . import models
 
 class CourseSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
-        fields = ('course_name', 'fee', 'contents', 'duration')
+        fields = ('id', 'course_name', 'fee', 'contents', 'duration')
         lookup_field = 'course_name'
         model = models.Courses

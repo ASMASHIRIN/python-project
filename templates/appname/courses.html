@@ -22,6 +22,24 @@
         padding:25px;
         font-size:20px;
         }
+                .homepg{
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        width:150px;
+        height:50px;
+        margin:8px;
+        font-size:25px;
+        color:white;
+        }
+        .homepgs{
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        margin:auto;
+        }
     </style>
 <!--Background #1-->
 <div style="background-image: url('/static/images/galaxyy.jpg');background-repeat:no-repeat;
@@ -39,8 +57,7 @@ background-size:cover">
 <!--         <label class="form-label" for="form1"></label>-->
 <button id="course-search-input" type="button" class="btn btn-primary"
           style="border:2px solid white;">
-          <i class="fas fa-search">SEARCH</i>
-        </button>
+          <i class="fas fa-search">SEARCH</i></button>
         <div id="course-search-results">
     <!-- Search results will be displayed here -->
         </div>
@@ -105,11 +122,16 @@ background-size:cover">
         <span style="color:#ffec17;font:calibri;font-weight:900;font-size:60px;
             display:flex;align-items:center;justify-content:center;-webkit-text-stroke-width: 1px;
             -webkit-text-stroke-color: black">Our Training Programs</span><br>
+
         <span style="color:#000000;font:calibri;font-weight:600;font-size:25px;margin-left:40px;margin-right:40px;
             display:flex;align-items:center;justify-content:center">All Trainers Are Working Professionals,
             Software Engineers,Networking</span>
         <span style="color:#000000;font:calibri;font-weight:600;font-size:25px;margin-left:40px;margin-right:40px;
             display:flex;align-items:center;justify-content:center">Engineers And Software Test Engineers Of Suffix E Solutions</span><br>
+<!--    enroll button-->
+    <div class="row homepgs">
+    <a class="btn btn-warning nav-link white-text homepg" href="{% url 'enroll' %}"><b>Enroll</b></a>
+        </div>
 <!--course ad    -->
         <div class="navbar-nav mb-lg-0 d-md-block d-none">
             <img class="rounded mx-auto d-block" src="{% static 'images\full stack poster.jpg' %}" style="width:500;

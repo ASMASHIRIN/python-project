@@ -11,13 +11,25 @@
     {
     body{width:100%}
     }
+        .navhead{
+        background-color:#071e67;
+        }
+        .ratingcontainer{
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        }
+        .iconcotainer{
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        justify-content: space-evenly;
+        }
     </style>
 </head>
 <body>
-<div style="background-image: url('/static/images/plain blue.png');
-background-repeat:no-repeat;background-position:center top; background-attachment:fixed;
-background-size:cover;height:900px;">
-    <br> <br> <br>
+
         <!--    navigation bar-->
 <nav class="navbar navbar-expand-lg navbar-dark navhead">
     <div class="container-fluid">
@@ -57,9 +69,115 @@ background-size:cover;height:900px;">
             </ul>
         </div>
     </div>
-</nav><hr style="color:white ;height:6px;">
+</nav>
+    <div style="background-image: url('/static/images/blue-white.png');margin:auto;
+background-repeat:no-repeat;background-position:center top; background-attachment:fixed;
+background-size:cover;rotate:180deg; height:1800px;">
+<!--    To rotate rest of the content-->
+    <div style="rotate:180deg;align:center">
+<!--        heading-->
+        <span style="color:#ffffff;font:calibri;font-weight:900;font-size:50px;
+    display:flex;align-items:center;justify-content:center"><u>ABOUT US</u></span><br><br><br><br>
+<!--    TABLE-->
+        <div style="width:650px; height:400px;background-color:white;border-collapse:collapse;
+border:2px solid grey;margin-left:auto;margin-right:auto;display:flex;">
+<!--        WOMEN-->
+            <img class="" src="{% static 'images\women call.jpg' %}" style="width:240px; margin-left:9px;
+ margin-top:9px;margin-bottom:9px" alt="scope"/>
+            <span style="margin-left:4px;margin-right:4px"></span>
+<!--        2ND PART-->
+            <div style="width:390px;margin-right:9px;margin-top:9px;margin-bottom:9px;background-color:#D5DBDB">
+                <span style="color:darkblue; font:message-box; font-weight:700;margin-top:7px;
+            text-align:center;font-size:27px;"><br>
+                SCOPE INDIA<br> is open 365 days a year</span><br><br><br>
+                <span style="color:darkblue;font:message-box;margin-top:5px; text-align:center;font-size:19px; ">
+                We are open 7 days 24 hrs to talk to you and listen to your queries.</span><br><br><br>
+                <span style="color:#009999;font:calibri;font-weight:700;margin-top:5px;
+             text-align:center;font-size:24px; ">
+                GET A FREE CALL BACK</span><br><br>
+                <a class="btn btn-warning nav-link white-text" href="{% url 'contact_us' %}">CONTACT US </a>
+
+            </div>
+        </div>
+        <!--rating -->
+        <div class="ratingcontainer">
+            <img   src="{% static 'images\rating.png' %}"
+              style="display: block;margin-left:auto;margin-right:auto;width:230px;
+              height:170px;align:center;" alt="scope"/><br>
+        <div style="color:black;font:calibri;font-weight:450;margin-left:auto;margin-right:auto;
+             align:center;font-size:24px; ">GOOGLE 4.9 * RATED INSTITUTE</div><br><br><br>
+<!--        text-->
+    <span style="color:darkblue; font:message-box; font-weight:700;margin-top:2px;
+            text-align:center;font-size:47px;margin-left:auto;margin-right:auto;">
+        SCOPE INDIA, your career partner!</span><br>
+        <span style="color:darkblue; font:message-box; font-weight:400;margin-top:2px;
+            text-align:center;font-size:32px;margin-left:auto;margin-right:auto;">
+            One of the best Training Destination for Software, Networking <br>and Cloud Computing courses in India
+        </span><br>
+        <span style="color:black; font:message-box; font-weight:200;margin-top:2px;
+            text-align:center;font-size:25px;margin-left:50px;margin-right:50px;">Software, Networking, and
+            Cloud Professional Education Centre in Kerala from Suffix E Solutions with WORKING PROFESSIONALS
+            oriented on-the-job TRAINING model. SCOPE INDIA provides courses for Software Programming in Python
+            (Data Science | Artificial Intelligence | Machine Learning | Deep Learning), Java, PHP, .Net,
+            Software Testing Manual and Automation, Cloud in AWS, Azure, Server Administration in MCSE, and
+            RHCE, CCNA, Mobile App Development in Flutter, and, Digital Marketing. Training with 100% Trusted
+            Job Based Internship Model. SCOPE INDIA has a Strong Placement Cell that provides jobs to 1000's of
+            students every year. We assure you, you won't regret it after training from SCOPE INDIA!
+This is how SCOPE INDIA can support both newbies and experienced in the industry to upgrade their skills.
+        </span>
+            </div><br><br><br><br><br>
+<!--        icons n details-->
+        <p class="row">
+<!--            Icon 1-->
+            <span class="column iconcotainer" style="color:darkblue; font:message-box; font-weight:600;margin-top:1px;
+            text-align:center;font-size:40px;margin-left:auto;margin-right:auto; width:300px;">
+                <img   src="{% static 'images\training.png' %}"
+                       style="display: block;width:150px;height:150px;" alt="scope"/>Training<br>
+                <span style="color:black; font:message-box; font-weight:300;margin-top:1px;
+            text-align:center;font-size:20px;margin-left:auto;margin-right:auto;">
+                You are trained under Suffix E Solutions working professionals, on-the-job training model.
+                </span>
+            </span>
+<!--            Icon 2-->
+            <span class="column iconcotainer" style="color:darkblue; font:message-box; font-weight:600;margin-top:1px;
+            text-align:center;font-size:40px;margin-left:auto;margin-right:auto; width:300px;">
+                <img   src="{% static 'images\internship.png' %}"
+                       style="display: block;width:150px;height:150px;" alt="scope"/>Internship<br>
+                <span style="color:black; font:message-box; font-weight:300;margin-top:1px;
+            text-align:center;font-size:20px;margin-left:auto;margin-right:auto;">
+                After course completion, you will be proceeded to live projects with
+                    a 6 months experience certificate.
+                </span>
+            </span>
+<!--            Icon 3-->
+            <span class="column iconcotainer" style="color:darkblue; font:message-box; font-weight:600;margin-top:1px;
+            text-align:center;font-size:40px;margin-left:auto;margin-right:auto; width:300px;">
+                <img   src="{% static 'images\grooming.png' %}"
+                       style="display: block;width:150px;height:150px;" alt="scope"/>Grooming<br>
+                <span style="color:black; font:message-box; font-weight:300;margin-top:1px;
+            text-align:center;font-size:20px;margin-left:auto;margin-right:auto;">
+                CV Preparation, Interview Preparation, and Personality Development.
+                </span>
+            </span>
+<!--            Icon 4-->
+            <span class="column iconcotainer" style="color:darkblue; font:message-box; font-weight:600;margin-top:1px;
+            text-align:center;font-size:40px;margin-left:auto;margin-right:auto; width:300px;">
+                <img   src="{% static 'images\placement.png' %}"
+                       style="display: block;width:150px;height:150px;" alt="scope"/>Placement<br>
+                <span style="color:black; font:message-box; font-weight:300;margin-top:1px;
+            text-align:center;font-size:20px;margin-left:auto;margin-right:auto;">
+                Gives 100% FREE placement support to all our fellow techies through SCOPE INDIA's Placement Cell.
+                </span>
+            </span>
+        </p>
+    </div>
+</div>
 <br><br><br>
 <!--    #1-->
+        <div style="background-image: url('/static/images/plain blue.png');
+background-repeat:no-repeat;background-position:center top; background-attachment:fixed;
+background-size:cover;height:900px;">
+    <br> <br> <br>
     <div class="col text-center">
         <span style="color:#009999;font:calibri;font-weight:700;
              align:center;font-size:43px; ">30+</span><br>

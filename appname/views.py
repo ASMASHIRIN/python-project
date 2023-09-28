@@ -9,6 +9,7 @@ from .models import Courses, Registration, Opted_course, Temp_otp
 from rest_framework import generics, viewsets, filters
 from . import serializers
 from .serializers import CourseSerializer
+import datetime
 
 
 # Create your views here.
@@ -239,7 +240,7 @@ def logout(request):
     auth.logout(request)
     request.session['user_status'] = 'logged out'
     request.session['user_name'] = ''
-    return redirect('signin')
+    return redirect('login')
 
 
 def forgot_password(request):
@@ -299,7 +300,30 @@ def new_password(request):
 
 
 def enroll(request):
-    return render(request, 'appname/enroll.html')
+    if request.method == "POST":
+        course_id = request.POST['course_id']
+        user_id = request.session["user"][0]['userId']
+        course_name = request.POST['course_name']
+        course = Courses.objects.get(pk=course_id)
+        user = Registration.objects.get(pk=user_id)
+        optedcourse = Opted_course()
+        optedcourse.courseid = course
+        optedcourse.userid = user
+        optedcourse.coursename = course_name
+        date = datetime.datetime.now().strftime("%b %d,%Y %I:%M:%S %p")
+        optedcourse.joindate = date
+        optedcourse.save()
+        return redirect('enroll')
+    else:
+        optedcourse = Opted_course.objects.all()
+    return render(request, 'appname/enroll.html', {'optedcourse': optedcourse})
+
+
+def delete(request):
+    id = request.GET.get('id',None)
+    dlt = Opted_course.objects.get(pk=id)
+    dlt.delete()
+    return redirect('enroll')
 
 
 class Search(generics.ListCreateAPIView):
@@ -310,8 +334,5 @@ class Search(generics.ListCreateAPIView):
     search_fields = ['course_name']
 
 
-    # def get_queryset(self):
-    #     course_name = self.kwargs['course_name']
-    #     return Courses.objects.filter(course_name=course_name)
-    # # user = Courses()
-    # # course = Courses.objects.filter(pk=user[0].userid.id)(search=user.course_name)
+
+

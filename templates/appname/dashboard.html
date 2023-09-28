@@ -151,13 +151,15 @@ background-size:cover">
     <h3>{{detail.phonenumber}}</h3><br><br>
 <!--    address-->
     <span class="profile" ><u>ADDRESS</u></span><br>
-    <h3>{{detail.address}},<br>{{detail.city}},<br>{{detail.state}},<br>{{detail.country}}</h3><br><br>
+    <h3>{{detail.address}}<br>{{detail.city}}<br>{{detail.state}}<br>{{detail.country}}</h3><br><br>
 <!--    course -->
-    <span class="profile" ><u>COURSE<a href="{% url 'courses' %}">(add course)</a></u></span><br>
+    <span class="profile" ><u>COURSE<a href="{% url 'enroll' %}">(add course)</a></u></span><br>
     {% for o in o_course %}
-    <h3>{{o.courseid}}</h3><br><br><br><br><br>
+    <h3>{{o.courseid}}</h3>
     {% endfor %}
+    <br><br>
     {% endfor %}
+
 </div>
 </body>
 </html>
