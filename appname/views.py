@@ -2,7 +2,7 @@ import json
 import random
 
 from django.conf import settings
-from django.contrib import auth
+from django.contrib import auth,messages
 from django.core.mail import send_mail
 from django.shortcuts import render, redirect, HttpResponse, get_object_or_404
 from .models import Courses, Registration, Opted_course, Temp_otp
@@ -37,8 +37,9 @@ def registration(request):
         user.city = request.POST["city"]
         user.hobbies = json.dumps(request.POST["hobbies"])
         user.password = user.firstname + "@" + str(random.randint(1001, 9998))  # Generate a temporary password
-        user.profilepicture = request.FILES["profilepicture"]
-        if Registration.objects.filter(email=['user.email']).exists():
+        user.proflepicture = request.FILES["profilepicture"]
+        if Registration.objects.filter(email=user.email).exists():
+            messages.error(request, "existing email")
             print('existing email')
             return redirect('registration')
         else:
@@ -172,25 +173,24 @@ def course_detail(request, name):
 def edit(request):
     if request.method == "POST":
         user_data = get_object_or_404(Registration, pk=request.session["user"][0]['userId'])
-        user = Registration()
-        user.firstname = request.POST["firstname"]
-        user.lastname = request.POST["lastname"]
-        user.email = request.POST["email"]
-        user.phonenumber = request.POST["phonenumber"]
-        user.address = request.POST["address"]
-        user.proflepicture = request.FILES["proflepicture"]
-        print(user.proflepicture)
-        if Registration.objects.filter(email=user.email).exists():
+        user_data.firstname = request.POST["firstname"]
+        user_data.lastname = request.POST["lastname"]
+        user_data.email = request.POST["email"]
+        user_data.phonenumber = request.POST["phonenumber"]
+        user_data.address = request.POST["address"]
+        user_data.proflepicture = request.FILES["profilepicture"]
+        print(user_data.proflepicture)
+        if Registration.objects.filter(email=user_data.email).exists():
+            user_data.save()
             # User = Registration.objects.get(email=request.POST['email'])
-
-            Registration.objects.filter(pk=request.session["user"][0]['userId']).update(firstname=user.firstname,
-                                                                                        lastname=user.lastname,
-                                                                                        email=user.email,
-                                                                                        phonenumber=user.phonenumber,
-                                                                                        address=user.address,
-                                                                                        proflepicture=user.proflepicture,
-                                                                                        is_verified=True)
-            # user.save()
+            # Registration.objects.filter(pk=request.session["user"][0]['userId']).update(firstname=user.firstname,
+            #                                                                             lastname=user.lastname,
+            #                                                                             email=user.email,
+            #                                                                             phonenumber=user.phonenumber,
+            #                                                                             address=user.address,
+            #                                                                             profilepicture=user.profilepicture,
+            #                                                                             is_verified=True)
+            # # user.save()
             return redirect("dashboard")
         else:
             print("user doesn't exists")
@@ -204,6 +204,7 @@ def dashboard(request):
     user_details = Registration.objects.filter(pk=request.session["user"][0]['userId'])
     for user in user_details:
         course = Opted_course.objects.filter(userid=user.id)
+    print(user_details)
     return render(request, 'appname/dashboard.html', {'details': user_details, 'o_course': course})
 
 
@@ -230,6 +231,7 @@ def login(request):
                 else:
                     return redirect("login")
             else:
+                messages.error(request, "Incorrect Username or Password")
                 print("error")
                 return redirect('login')
         else:
@@ -264,6 +266,7 @@ def forgot_password(request):
                       )
             return redirect('otp')
         else:
+            messages.error(request, "Invalid email")
             print("error")
             return redirect('login')
     else:
